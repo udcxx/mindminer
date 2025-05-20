@@ -1,7 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue';
 
-export function useScrollReveal(selector = '.scroll-reveal', threshold = 0.1) {
+function useScrollReveal(selector = '.scroll-reveal', threshold = 0.1) {
   let observer: IntersectionObserver;
 
   const reveal = (entries: IntersectionObserverEntry[]) => {
@@ -13,7 +13,6 @@ export function useScrollReveal(selector = '.scroll-reveal', threshold = 0.1) {
   };
 
   onMounted(() => {
-    alert('aaa')
     observer = new IntersectionObserver(reveal, { threshold });
     document.querySelectorAll(selector).forEach(el => observer.observe(el));
   });
@@ -22,6 +21,8 @@ export function useScrollReveal(selector = '.scroll-reveal', threshold = 0.1) {
     observer && observer.disconnect();
   });
 }
+
+useScrollReveal();
 
 </script>
 
