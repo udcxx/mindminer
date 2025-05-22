@@ -24,7 +24,7 @@
             </header>
             <!-- <a href="">活用のヒント</a> -->
             <!-- <a href="">エクスポート</a> -->
-            <NuxtLink to="/tarms">利用規約</NuxtLink>
+            <NuxtLink to="/terms">利用規約</NuxtLink>
             <NuxtLink to="/policy">プライバシーポリシー</NuxtLink>
             <a data-ui="#reset-alert">データリセット</a>
         </nav>

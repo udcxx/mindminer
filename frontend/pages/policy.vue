@@ -1,9 +1,9 @@
 <template>
     <header>
         <nav>
-            <NuxtLink to="/" class="circle transparent">
+            <a to="/" class="circle transparent" @click="$router.go(-1);">
                 <i>arrow_back</i>
-            </NuxtLink>
+            </a>
             <h1 class="max">プライバシーポリシー</h1>
         </nav>
     </header>
