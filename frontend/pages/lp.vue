@@ -4,7 +4,11 @@ useHead({
     meta: [
         { name: 'description', content: '思考発掘ツール「Mind Miner」は、AIの力を借りながら、あなたの脳内に眠っている知識や記憶をひらめきに変えるツールです。' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#6c5ce7' }
+        { name: 'theme-color', content: '#6c5ce7' },
+        { property: 'og:title', content: 'Mind Miner - 思考発掘ツール' },
+        { property: 'og:description', content: '思考発掘ツール「Mind Miner」は、AIの力を借りながら、あなたの脳内に眠っている知識や記憶をひらめきに変えるツールです。' },
+        { property: 'og:image', content: '/screen.jpg' },
+        { property: 'og:url', content: 'https://app.udcxx.me/mindminer/' },
     ]
 });
 </script>
