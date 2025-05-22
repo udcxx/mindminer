@@ -30,7 +30,7 @@ $body = [
   'model' => 'gpt-4.1-nano',
   'messages' => [[
     'role' => 'user',
-    'content' => "次に与えられた {id, text, x, y} のうち、text から連想される単語や短い言葉だけを10個列挙してください。想像が広がるような言葉選びをしてください。単語や短い言葉以外は回答しないでください。単語や短い言葉ごとに改行してください。text と同じものは回答しないでください。text に使われている言語で返してください。(x, y) の近さも考慮してください。：{$input_data}"
+    'content' => "次に与えられた {id, text, x, y} のうち、text から連想される単語や短い言葉を10個列挙してください。記憶を呼び起こすような単語や短い言葉を選んでください。単語や短い言葉以外は回答しないでください。単語や短い言葉ごとに改行してください。text に既に含まれる単語や短い言葉は避けてください。text に使われている言語で返してください。(x, y) の近さも考慮してください。：{$input_data}"
   ]],
   'temperature' => 0.7
 ];
@@ -52,10 +52,13 @@ $data = json_decode($res, true);
 debug($data);
 
 $text = $data['choices'][0]['message']['content'] ?? '';
+$lines = preg_split('/\R/u', $text);
 $words = array_values(array_filter(array_map(
-  fn($l) => trim(preg_replace('/^\d+\.\s*/', '', $l)),
-  preg_split('/\R/', $text)
-)));
+  fn($l) => trim(preg_replace('/^\d+\.\s*/', '', $l)), $lines
+), function($v) {
+  // 空文字や不可視文字、1文字の「�」を除外
+  return $v !== '' && $v !== '�' && !preg_match('/^[\p{C}\p{Zs}]+$/u', $v);
+}));
 
 debug($words);
 
